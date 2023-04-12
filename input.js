@@ -3,6 +3,7 @@ let connection;
 
 const handleUserInput = function(key) {
   //console.log('taking input');
+  connection.write("Say: Incoming!"); //displays a message with your snake
   if (key === 'w') {
     connection.write('Move: up');
   } else if (key === 'a') {

@@ -8,11 +8,10 @@ let conn = connect();
 setupInput(conn);
 
 
-
 //"data", "connect" are fixed event listeners. you can't change it
-// conn.on("data", (data) => {
-//   console.log("Server says: ", data);
-// });
+conn.on("data", (data) => {
+  console.log("Server says: ", data);
+});
 
 //giving a name to snake
 // const name = 'RB';
