@@ -3,18 +3,24 @@ const { connect } = require('./client');
 const { setupInput } = require("./input");
 
 console.log("Connecting ...");
-//let conn = connect();
-connect();
-setupInput();
+let conn = connect();
+
+setupInput(conn);
+
+
 
 //"data", "connect" are fixed event listeners. you can't change it
 // conn.on("data", (data) => {
 //   console.log("Server says: ", data);
 // });
 
+//giving a name to snake
 // const name = 'RB';
 // conn.write(`Name: ${name}`);
 
+
+
+//Examples of testing snake movement after delays
  //moves the snake up, down left right
 // setInterval(() => {
 //   conn.write("Move: up");
@@ -23,15 +29,3 @@ setupInput();
   // setTimeout(() => {
   //   conn.write('Move: up');
   // }, 2000)
-
-
-
-
-
-
-
-//The .on method lets you specify an event name 
-//and a function that does something when that event happens.
-// conn.on("connect", () => {
-//   console.log(`I have estabished connection with server`);
-// });
