@@ -11,15 +11,34 @@ conn.on("data", (data) => {
   console.log("Server says: ", data);
 });
 
-
 const name = 'RB';
 conn.write(`Name: ${name}`);
- //moves the snake up, down left right
 
+const handleUserInput = function(key) {
+  console.log('taking input');
+  conn.write(`${key}`);
+  if (key === '\u0003') {
+    console.log("exiting"); //registered event listener which is stdin (stdin is a listener)
+    process.exit();
+  }
+};
+
+const setupInput = function() {
+  const stdin = process.stdin;
+  stdin.setRawMode(true);
+  stdin.setEncoding("utf8");
+  stdin.resume();
+  stdin.on("data", handleUserInput);
+  return stdin;
+};
+
+setupInput();
+
+
+ //moves the snake up, down left right
 // setInterval(() => {
 //   conn.write("Move: up");
 // }, 1000)
-
 
   // setTimeout(() => {
   //   conn.write('Move: up');
@@ -28,27 +47,8 @@ conn.write(`Name: ${name}`);
 
 
 
-// setTimeout(() => {
-//   conn.write('Move: up');
-//   conn.write('Move: left');
-//   conn.write('Move: up');
-// }, 50)
-// conn.on('data', () => {
-//   setTimeout(() => {
-    
-//   }, 0);
-//   setTimeout(() => {
-//     conn.write('Move: up');
-
-//   }, 0);
 
 
-// });
-
-// conn.on('data', () => {
-//   conn.write('Move: up');
-//   conn.write('Move: left');
-// });
 
 //The .on method lets you specify an event name 
 //and a function that does something when that event happens.
